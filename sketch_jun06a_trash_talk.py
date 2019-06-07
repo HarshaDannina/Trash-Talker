@@ -3,14 +3,14 @@ import json, time
 
 garbage_full_limit = 5 # the distance between device and  garbage in dustbin in cm
 
-API_KEY = "2ce4c9c7-fdbe-4426-abcc-7bd94cf36fb5"
-DEVICE_ID  = "BOLT3880173"
+API_KEY = "Bolt Cloud API"
+DEVICE_ID  = "BOLTxxxxx"
 
 # Credentials required to send SMS
-SID = 'AC47aec30690ee078250eba59f25630893'
-AUTH_TOKEN = '9ea707e96f75d6094557b1c9186033c0'
-FROM_NUMBER = '+16084716734'
-TO_NUMBER = '+917095675760'
+SID = 'Your Twilio SID'
+AUTH_TOKEN = 'Twilio Auth Token'
+FROM_NUMBER = 'No. in your Dashboard'
+TO_NUMBER = 'Twilio Verified No.'
 
 mybolt = Bolt(API_KEY, DEVICE_ID) #Create object to fetch data
 sms = Sms(SID, AUTH_TOKEN, TO_NUMBER, FROM_NUMBER) #Create object to send SMS
