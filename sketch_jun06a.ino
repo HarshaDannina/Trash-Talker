@@ -14,7 +14,7 @@ void setup() {
 void loop() {
   float senData = ultrasonic.read();
   int sensor = int(senData);
-  Serial.println(sensor);
+  //Serial.println(sensor);
   boltiot.processPushDataCommand(sensor);
   delay(500);
   
