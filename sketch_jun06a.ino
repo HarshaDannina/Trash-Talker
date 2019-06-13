@@ -1,40 +1,21 @@
-
-
 #include <BoltDeviceCredentials.h>
 #include <BoltIoT-Arduino-Helper.h>
 
 
+#include <Ultrasonic.h>
 
-
-
-const int pingPin = 12; // Trigger Pin of Ultrasonic Sensor
-const int echoPin = 13; // Echo Pin of Ultrasonic Sensor
-// const int echoPin = 2; // In case, if Pin 13 didn't work
+Ultrasonic ultrasonic(12, 13);
 
 void setup() {
-   Serial.begin(9600); // Starting Serial Terminal
-}
+  Serial.begin(9600);
+  boltiot.begin(Serial);
+  }
 
 void loop() {
-   long duration, inches, cm;
-   pinMode(pingPin, OUTPUT);
-   digitalWrite(pingPin, LOW);
-   delayMicroseconds(2);
-   digitalWrite(pingPin, HIGH);
-   delayMicroseconds(10);
-   digitalWrite(pingPin, LOW);
-   pinMode(echoPin, INPUT);
-   duration = pulseIn(echoPin, HIGH);
-   //inches = microsecondsToInches(duration);
-   cm = microsecondsToCentimeters(duration);
-   //Serial.print(inches);
-   //Serial.print("in, ");
-   Serial.print(cm);
-   //Serial.print("cm");
-   Serial.println();
-   delay(1000);
-}
-
-long microsecondsToCentimeters(long microseconds) {
-   return microseconds / 29 / 2;
+  float senData = ultrasonic.read();
+  int sensor = int(senData);
+  Serial.println(sensor);
+  boltiot.processPushDataCommand(sensor);
+  delay(500);
+  
 }
